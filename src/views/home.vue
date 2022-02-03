@@ -2,8 +2,8 @@
 </script>
 
 <template>
-  <router-view />
+    home...
 </template>
 
-<style>
+<style scoped>
 </style>
