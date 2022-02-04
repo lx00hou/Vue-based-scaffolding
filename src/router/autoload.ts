@@ -34,7 +34,8 @@ function getRouteByModule (file:string,module:{[key:string]:any}){
         path:`/${name}`,
         component:module.default
     }
-    return route
+    // 可以在页面自定义路由
+    return Object.assign(route,module.default?.route) 
 }
 //  动态获取子路由
 function getChildrenRoutr(layoutRoute:RouteRecordRaw){
