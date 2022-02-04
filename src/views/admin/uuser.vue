@@ -2,7 +2,9 @@
 </script>
 
 <template>
-    home...页面
+<main>
+    admin--user
+</main>
 </template>
 
 <style scoped>

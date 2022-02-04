@@ -2,7 +2,9 @@
 </script>
 
 <template>
-    home...页面
+<main>
+    member--email
+</main>
 </template>
 
 <style scoped>
