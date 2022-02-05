@@ -1,6 +1,10 @@
 # Vue 3 + Typescript + Vite
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+
+views 下的admin文件都会在 layouts下的admin中通过router-view 展示  (member 同理)
+router-autoLoad 遍历文件 动态添加到路由中 
+.env文件 ---> 配置的环境变量
+vite-alias --> 配置别名(包括路径引用 用@/ 代表 src 文件等)
 
 ## Recommended IDE Setup
 
