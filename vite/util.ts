@@ -1,7 +1,7 @@
 import _ from 'lodash'
 // 针对配置的环境变量(.env文件)的value 都是字符串问题 进行解决
-export function parseEnv(env:Record<string,any>){
-    const envs = _.cloneDeep(env)    // 通过lodash 进行数据深拷贝
+export function parseEnv(env:Record<string,any>):ViteEnv{
+    const envs:any = _.cloneDeep(env)    // 通过lodash 进行数据深拷贝
     Object.entries(env).forEach(([key,value]) => {
         if(['true','false'].includes(value)){
             envs[key] = value == 'true' ? true : false

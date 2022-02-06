@@ -1,7 +1,8 @@
 import { defineConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
+// import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import alias from './vite/alias'
+import setupPlugins from './vite/plugins/index'
 import {parseEnv} from './vite/util'
 
 
@@ -10,7 +11,7 @@ export default ({command,mode}:ConfigEnv) => {
   const root = process.cwd()      // env 目录路径
   const env = parseEnv(loadEnv(mode,root))         // parseEnv()环境变量的value默认都是字符串问题进行解决
   return {
-    plugins: [vue()],
+    plugins:setupPlugins(isBuild,env),
     resolve:{
       //  定义别名
       alias,
