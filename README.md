@@ -5,6 +5,7 @@ views 下的admin文件都会在 layouts下的admin中通过router-view 展示  
 router-autoLoad 遍历文件 动态添加到路由中 
 .env文件 ---> 配置的环境变量
 vite-alias --> 配置别名(包括路径引用 用@/ 代表 src 文件等)
+plugins  -->  各种插件
 
 ## Recommended IDE Setup
 
