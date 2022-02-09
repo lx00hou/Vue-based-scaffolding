@@ -15,14 +15,14 @@ export default class Axios {
     }
 
     public request<T>(config:AxiosRequestConfig){
-        // this.instance.request<ResponseResult<T>>()
+        return this.instance.request(config)
     }
 
     private interceptorsRequest(){
         this.instance.interceptors.request.use(
             config => {
                 return config 
-            }
+            },
             error => {
                 return Promise.reject(error)
             } 
@@ -33,7 +33,7 @@ export default class Axios {
         this.instance.interceptors.response.use(
             response => {
                 return response 
-            }
+            },
             error => {
                 return Promise.reject(error)
             }

@@ -1,9 +1,9 @@
-import Axios from "@axios/axios";
+import Axios from "./axios"
 
 const http = new Axios({
     baseURL:'/api',
     timeout:100000,
-    Headers:{}
+    headers:{}
 })
 
 export { http }

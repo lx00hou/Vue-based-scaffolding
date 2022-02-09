@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// import helper,{env} from '@/types/helper';
-// console.log(helper.env);
-// console.log(env);
+import userApi from '@/apis/userApi';
+const request = await userApi.info()
+console.log(request); 
 </script>
 
 <template>
