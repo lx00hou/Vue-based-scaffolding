@@ -1,7 +1,13 @@
 import { http } from "@/axios";
 
+interface User {
+    name:string,
+    age:number,
+    avatar?:string
+}
+
 function info(){
-    return http.request({
+    return http.request<User>({
         url:`get`,
     })
 }

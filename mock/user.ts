@@ -7,8 +7,9 @@ export default [
         response:() => {
             return {
                 code:0,
-                data:{
-                    name:"测试"
+                result:{
+                    name:"测试",
+                    age:22
                 }
             }
         }

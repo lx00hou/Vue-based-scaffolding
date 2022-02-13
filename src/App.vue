@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import userApi from '@/apis/userApi';
 const request = await userApi.info()
-console.log(request); 
+console.log(request.result.name); 
 </script>
 
 <template>

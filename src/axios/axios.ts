@@ -14,8 +14,16 @@ export default class Axios {
         this.interceptorsResponse()
     }
 
-    public request<T>(config:AxiosRequestConfig){
-        return this.instance.request(config)
+    public request<T,D = ResponseResult<T>>(config:AxiosRequestConfig){
+        return new Promise(async (resolve,reject) => {
+            try {
+                const response = await this.instance.request<D>(config) 
+                resolve(response.data)                 
+            } catch (error) {
+                reject(error)
+            }
+        }) as Promise<D>
+
     }
 
     private interceptorsRequest(){
