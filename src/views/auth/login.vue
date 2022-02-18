@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import YcBtn from '@/components/form/yc-btn.vue';
 </script>
 
 <template>
