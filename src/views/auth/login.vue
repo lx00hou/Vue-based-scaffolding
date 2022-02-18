@@ -2,8 +2,8 @@
 </script>
 
 <template>
-<main class=" bg-slate-400 h-screen flex justify-center items-center">
-      <div class="w-[720px] bg-white  grid grid-cols-2 rounded-md shadow-md overflow-hidden">
+<main class=" bg-slate-400 h-screen flex justify-center items-center p-5 md:p-0">
+      <div class="w-[720px] bg-white  md:grid grid-cols-2 rounded-md shadow-md overflow-hidden ">
          <div class="p-6">
             <h2 class=" text-center text-gray-700 text-lg">会员登录</h2>
             <div class=" mt-8">
@@ -11,8 +11,13 @@
                <input type="text" placeholder="请输入密码" class="yc-input mt-4">
             </div>
             <button class="yc-btn mt-4">登录</button>
+            <div class="flex gap-2 justify-center mt-6">
+               <a href="" class="text-xs text-gray-700 hover:text-violet-500">网站首页</a>
+               <a href="" class="text-xs text-gray-700 hover:text-violet-500">会员注册</a>
+               <a href="" class="text-xs text-gray-700 hover:text-violet-500">找回密码</a>
+            </div>
          </div>
-         <div>
+         <div class="hidden md:block">
             <img src="/img/login.jpg" class=" h-80 w-full object-cover" alt="">
          </div>
       </div>
