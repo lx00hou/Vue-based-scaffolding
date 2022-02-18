@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import YcBtn from '@/components/form/yc-btn.vue';
 </script>
 
 <template>
@@ -7,10 +8,10 @@
          <div class="p-6">
             <h2 class=" text-center text-gray-700 text-lg">会员登录</h2>
             <div class=" mt-8">
-               <input type="text" placeholder="请输入手机号或邮箱" class="yc-input">
-               <input type="text" placeholder="请输入密码" class="yc-input mt-4">
+               <ycInput />
+               <ycInput class="mt-4" />
             </div>
-            <button class="yc-btn mt-4">登录</button>
+            <ycBtn class="mt-4" />
             <div class="flex gap-2 justify-center mt-6">
                <a href="" class="text-xs text-gray-700 hover:text-violet-500">网站首页</a>
                <a href="" class="text-xs text-gray-700 hover:text-violet-500">会员注册</a>
