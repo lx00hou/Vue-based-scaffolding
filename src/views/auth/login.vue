@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import { reactive } from "@vue/reactivity";
+
+const form = reactive({
+   account:"",
+   password:""
+})
 </script>
 
 <template>
@@ -7,8 +13,8 @@
          <div class="p-6">
             <h2 class=" text-center text-gray-700 text-lg">会员登录</h2>
             <div class=" mt-8">
-               <ycInput />
-               <ycInput class="mt-4" />
+               <ycInput v-model="form.account" placeholder="请输入邮箱或手机号" />
+               <ycInput v-model="form.password" class="mt-4" placeholder="请输入登录密码" />
             </div>
             <ycBtn class="mt-4" />
             <div class="flex gap-2 justify-center mt-6">
@@ -18,7 +24,7 @@
             </div>
          </div>
          <div class="hidden md:block">
-            <img src="/img/login.jpg" class=" h-80 w-full object-cover" alt="">
+            <img src="/img/work.jpg" class=" h-80 w-full object-cover" alt="">
          </div>
       </div>
 </main>

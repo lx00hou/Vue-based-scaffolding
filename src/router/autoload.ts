@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from "vue-router";
+import {env} from '@/utils/helper'
 // 动态注册路由
 // { 
 //     path:"/",
@@ -49,4 +50,5 @@ function getChildrenRoutr(layoutRoute:RouteRecordRaw){
     return routes
 }
 
-export default getRoutes()
+const routes = env.VITE_ROUTER_AUTOLOAD?getRoutes():[] as RouteRecordRaw[];
+export default routes
