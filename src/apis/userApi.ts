@@ -8,8 +8,20 @@ interface User {
 
 function info(){
     return http.request<User>({
-        url:`get`,
+        url:`info`,
     })
 }
 
-export default {info}
+interface loginInterface {
+    token:string
+}
+
+function login(data:any){
+    return http.request<loginInterface>({
+        url:`login`,
+        method:"post",
+        data
+    }) 
+}
+
+export default {info,login}
