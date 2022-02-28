@@ -2,6 +2,7 @@
 import { reactive } from "@vue/reactivity";
 import v from '@/plugins/validate';
 import userApi from "@/apis/userApi";
+import { store } from "@/utils";
 const { Form , Field , ErrorMessage } = v
 const schema = {
    account:{required:true,regex:/.+@.+|\d{11}/},
@@ -9,7 +10,9 @@ const schema = {
 }
 const onSubmit = async (values) => {
    const {result:{token}} = await userApi.login(values);
-   localStorage.setItem('token',token);
+   store.set('token',{
+      expire:100,token
+   })
 }
 </script>
 
