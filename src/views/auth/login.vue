@@ -3,16 +3,25 @@ import { reactive } from "@vue/reactivity";
 import v from '@/plugins/validate';
 import userApi from "@/apis/userApi";
 import { store } from "@/utils";
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const { Form , Field , ErrorMessage } = v
 const schema = {
    account:{required:true,regex:/.+@.+|\d{11}/},
    password:{ required:true,min:6 }
 }
-const onSubmit = async (values) => {
+const onSubmit = async (values:any) => {
    const {result:{token}} = await userApi.login(values);
    store.set('token',{
-      expire:100,token
+      expire:100,
+      token
    })
+   router.push({name:'home'})
+}
+</script>
+<script lang="ts">
+export default {
+   route:{ name:'login' }
 }
 </script>
 
@@ -43,6 +52,7 @@ const onSubmit = async (values) => {
    </div>
 </Form>
 </template>
+
 
 <style lang="scss" scoped>
 form{

@@ -2,7 +2,7 @@ import { multiply } from "lodash";
 import { json } from "stream/consumers";
 import { date } from "yup";
 
-interface IDate{
+export interface IDate{
     expire?:number,
     [key:string]:any
 }
@@ -19,7 +19,7 @@ export default {
         if(item){
             const data = JSON.parse(item);
             const expire = data?.expire;
-            if(expire < new Date().getTime()){
+            if(expire && expire < new Date().getTime()){
                 localStorage.removeItem(key);
                 return null;
             }
