@@ -3,6 +3,7 @@ import { boolean } from 'yup'
 
 declare module 'vue-router'{
     interface RouteMeta {
-        auth?:boolean
+        auth?:boolean,
+        guest?:boolean
     }
 }
