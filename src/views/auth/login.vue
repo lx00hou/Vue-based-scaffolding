@@ -13,7 +13,7 @@ const schema = {
 const onSubmit = async (values:any) => {
    const {result:{token}} = await userApi.login(values);
    store.set('token',{
-      expire:100,
+      expire:100000,
       token
    })
    router.push({name:'home'})
