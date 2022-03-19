@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import MenuComponent from './admin/menu.vue';
+import navbarVue from './admin/navbar.vue';
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import MenuComponent from './admin/menu.vue';
         <!-- 左侧目录 -->
         <MenuComponent  />
         <div class="content flex-1 bg-gray-200">
+            <navbarVue />
             <router-view />
         </div>
     </div>
