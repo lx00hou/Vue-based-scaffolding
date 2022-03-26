@@ -13,7 +13,7 @@ import HistoryLink from './admin/historyLink.vue';
         <div class="content flex-1 bg-gray-100">
             <navbarVue />
             <HistoryLink />
-            <div class="m-3 p-5 bg-white">
+            <div class="m-3 p-5">
                 <router-view />
             </div>
         </div>
