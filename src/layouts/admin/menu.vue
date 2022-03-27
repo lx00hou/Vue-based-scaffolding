@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import {router} from '@/store/router';
+const routerStroe = router(); 
+console.log(routerStroe.getStatus)
 interface IMenuItem {
     title:string,
     icon?:string,
@@ -38,7 +41,6 @@ const handle = (pmenu:IMenuItem,cmenu?:IMenuItem) => {
 }
 
 </script>
-
 <template>
 <!-- 导航 -->
     <div class="menu w-[200px] bg-gray-900 p-4">

@@ -50,5 +50,5 @@ function getChildrenRoutr(layoutRoute:RouteRecordRaw){
     return routes
 }
 
-const routes = env.VITE_ROUTER_AUTOLOAD?getRoutes():[] as RouteRecordRaw[];
-export default routes;
+// const routes = env.VITE_ROUTER_AUTOLOAD?getRoutes():[] as RouteRecordRaw[];
+export default getRoutes;
