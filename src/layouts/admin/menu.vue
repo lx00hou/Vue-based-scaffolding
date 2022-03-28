@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import {router} from '@/store/router';
 const routerStroe = router(); 
-console.log(routerStroe.getStatus)
+console.log(routerStroe.routes)
 interface IMenuItem {
     title:string,
     icon?:string,

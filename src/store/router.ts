@@ -1,13 +1,21 @@
 import { defineStore } from 'pinia'
-export const router = defineStore('router',{
-    state:() => {
+import { useRoute, useRouter } from 'vue-router'
+export const router = defineStore('router', {
+    state: () => {
         return {
-            name:"测试"
-        }
-    },
-    getters:{
-        getStatus(state){
-            return state.name
+            routes: getShowRoutes()
         }
     }
-}) 
+})
+
+function getShowRoutes() {
+    const router = useRouter();
+    const routes = router.getRoutes()
+        .filter(route => route.children.length && route.meta?.show)
+        .map(route => {
+            route.children = route.children.filter(route => route.meta?.show)
+            return route
+        })
+    console.log(routes);
+    return routes
+}
