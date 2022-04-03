@@ -1,7 +1,3 @@
-<script lang='ts' setup>
-</script>
-
-
 <template>
 <main class="bg-white p-3 px-5 flex justify-between  items-center">
   <el-breadcrumb separator="/">
@@ -28,8 +24,4 @@
   </div>
 </main>
 </template>
-    
-
-    
-<style lang='stylus' scoped></style>
     

@@ -1,43 +1,25 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import {router} from '@/store/router';
+import { RouteRecordNormalized, RouteRecordRaw, useRouter } from 'vue-router';
+const routeService = useRouter();
 const routerStroe = router(); 
-console.log(routerStroe.routes)
-interface IMenuItem {
-    title:string,
-    icon?:string,
-    active?:boolean
-}
-interface IMenu extends IMenuItem{
-    active?:boolean
-    children?:IMenuItem[]
-} 
-const menus = ref <IMenu[]>([
-    {
-        title:"错误页面",icon:'fab fa-bimobject',active:true,
-        children:[
-            {title:'404'},
-            {title:'403',active:true},
-            {title:'500'},
-        ]
-    },
-    {
-        title:"编辑器",icon:'fab fa-behance-square',
-        children:[
-            {title:'markdown编辑器',active:true},
-            {title:'富文本编辑器'}
-        ]
-    }
-])
 const resetMenu = () => {
-    menus.value.forEach(val => {
-        val.active = false;
-        val.children?.forEach(i => i.active = false)
+    routerStroe.routes.forEach(route => {
+        route.meta.isClick = false;
+        route.children.forEach(route => {
+            if(route.meta){
+                route.meta.isClick = false
+            }
+        })
     })
 }
-const handle = (pmenu:IMenuItem,cmenu?:IMenuItem) => {
+const handle = (pRoute:RouteRecordNormalized,cRoute?:RouteRecordRaw) => {
     resetMenu();
-    pmenu.active = true;
+    pRoute.meta.isClick = true;
+    if(cRoute && cRoute.meta){
+        cRoute.meta.isClick = true;
+        routeService.push(cRoute)  // 页面跳转
+    }
 }
 
 </script>
@@ -50,18 +32,22 @@ const handle = (pmenu:IMenuItem,cmenu?:IMenuItem) => {
         </div>
         <!-- 菜单 -->
         <div class="left-container">
-            <dl v-for="(menu,index) of menus" :key="index">
-                <dt @click="handle(menu)">
+            <dl v-for="(route,index) of routerStroe.routes" :key="index">
+                <dt @click="handle(route)">
                     <section>
-                        <i :class="menu.icon" />
-                        <span>{{menu.title}}</span>
+                        <i :class="route.meta.icon" />
+                        <span>{{route.meta.title}}</span>
                     </section>
                     <section>
-                        <i class="fas fa-angle-down  duration-300" :class="{'rotate-180':menu.active}" />
+                        <i class="fas fa-angle-down  duration-300" :class="{'rotate-180':route.meta.isClick}" />
                     </section>
                 </dt>
-                <dd v-show="menu.active" :class="{active:cmenu.active}" v-for="(cmenu,index) in menu.children" :key="index">
-                    {{cmenu.title}}
+                <dd v-show="route.meta.isClick" 
+                :class="{active:childRoute.meta?.isClick}" 
+                v-for="(childRoute,index) in route.children"
+                 :key="index"
+                 @click="handle(route,childRoute)">
+                    {{childRoute.meta?.title}}
                 </dd>
             </dl>
         </div>
@@ -76,7 +62,7 @@ const handle = (pmenu:IMenuItem,cmenu?:IMenuItem) => {
             section{
                 @apply flex items-center;
                 i {
-                @apply mr-2 text-sm
+                @apply mr-2 text-lg
 
                 }
             }

@@ -40,7 +40,7 @@ nextTick(() => {
            </section>
        </el-card>
    </main>
-   <div class=" mt-6 p-5 grid md:grid-cols-2 gap-3">
+   <div class=" mt-6  grid md:grid-cols-2 gap-3">
        <el-card shadow="always" :body-style="{ padding: '20px' }">
            <template #header>
                <div>用户统计</div>
