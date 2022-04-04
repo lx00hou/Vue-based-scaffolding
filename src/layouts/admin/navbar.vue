@@ -12,7 +12,7 @@ const userStroe = user();
     <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
   </el-breadcrumb>
   <div class="flex justify-center items-center relative group cursor-pointer">
-      <img :src="userStroe.info.avatar"  class=" w-8 h-8 rounded-full object-cover">
+      <img :src="userStroe.info?.avatar"  class=" w-8 h-8 rounded-full object-cover">
       <span class="ml-2 text-sm text-gray-600">
         {{userStroe.info?.name}}
       </span>

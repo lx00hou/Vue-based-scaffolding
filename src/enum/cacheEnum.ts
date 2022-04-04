@@ -1,3 +1,4 @@
 export enum CacheEnum{
-    TOKEN_NAME = 'login_token'
+    TOKEN_NAME = 'login_token',
+    REDIRECT_ROUTE_NAME = 'redirect_router_name'
 }

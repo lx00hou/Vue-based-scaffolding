@@ -1,11 +1,6 @@
 <script lang="ts" setup>
-import { reactive } from "@vue/reactivity";
 import v from '@/plugins/validate';
-import userApi from "@/apis/userApi";
 import utils from "@/utils";
-import { useRouter } from 'vue-router';
-import { CacheEnum } from "@/enum/cacheEnum";
-const router = useRouter();
 const { Form , Field , ErrorMessage } = v
 const schema = {
    account:{required:true,regex:/.+@.+|\d{11}/},
@@ -13,9 +8,6 @@ const schema = {
 }
 const onSubmit = async (values:any) => {
    utils.user.login(values)
-   // const {result:{token}} = await userApi.login(values);
-   // utils.store.set(CacheEnum.TOKEN_NAME,{ token })
-   // router.push( { name:'home' })
 }
 </script>
 <script lang="ts">

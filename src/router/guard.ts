@@ -30,9 +30,13 @@ class Guard{
         return Boolean(!route.meta.guest || (route.meta.guest && !this.token()))
     }
 
-     // 是否登录
+     // 登录用户访问
     public isLogin(route:RouteLocationNormalized){
-        return Boolean(!route.meta.auth || (route.meta.auth && this.token()))
+        const state = Boolean(!route.meta.auth || (route.meta.auth && this.token()))
+        if(!state){
+            utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME,route.name)
+        }
+        return state
     }
 }
    

@@ -7,7 +7,8 @@ import userStore from '@/store/userStore';
 export async function login(values:IloginData){
     const {result:{token}} = await userApi.login(values);
    store.set(CacheEnum.TOKEN_NAME,{ token })
-   router.push( { name:'home' })
+   const routeName = store.get(CacheEnum.REDIRECT_ROUTE_NAME)??'home' 
+   router.push( { name:routeName })
 }
 
 export function logout(){
