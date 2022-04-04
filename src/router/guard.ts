@@ -1,4 +1,5 @@
 import { store } from "@/utils";
+import user from '@/store/user';
 import { stopCoverage } from "v8";
 import { RouteLocationNormalized, Router } from "vue-router";
 
@@ -14,7 +15,12 @@ class Guard{
 
         if(this.isLogin(to) === false) return {name:'login'} 
         if(this.isGuest(to) === false) return from
+        this.getUserInfo()
     }   
+
+    private getUserInfo(){
+        if(this.token()) user().getUserInfo()
+    }
 
     private token():string | null{
         return store.get('token')?.token
