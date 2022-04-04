@@ -11,3 +11,4 @@ export function setupRouter(app:App){
     guard(router);
     app.use(router)
 }
+export default router 

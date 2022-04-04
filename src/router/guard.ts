@@ -1,7 +1,8 @@
-import { store } from "@/utils";
-import user from '@/store/user';
+import utils from "@/utils";
+import userStore from '@/store/userStore';
 import { stopCoverage } from "v8";
 import { RouteLocationNormalized, Router } from "vue-router";
+import { CacheEnum } from "@/enum/cacheEnum";
 
 class Guard{
     constructor(private router:Router){}
@@ -10,20 +11,18 @@ class Guard{
         this.router.beforeEach(this.beforeEach.bind(this))
     }
 
-    private beforeEach(to:RouteLocationNormalized,from:RouteLocationNormalized){
-        let token = store.get('token')?.token
-
+    private async beforeEach(to:RouteLocationNormalized,from:RouteLocationNormalized){
         if(this.isLogin(to) === false) return {name:'login'} 
         if(this.isGuest(to) === false) return from
-        this.getUserInfo()
+        await this.getUserInfo();
     }   
 
     private getUserInfo(){
-        if(this.token()) user().getUserInfo()
+        if(this.token()) return userStore().getUserInfo()
     }
 
     private token():string | null{
-        return store.get('token')?.token
+        return utils.store.get(CacheEnum.TOKEN_NAME)?.token
     }
     
      // 游客

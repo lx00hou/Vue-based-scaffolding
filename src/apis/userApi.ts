@@ -8,7 +8,7 @@ interface User {
 
 function info(){
     return http.request<User>({
-        url:`info`,
+        url:`user/info`,
     })
 }
 
@@ -16,7 +16,12 @@ interface loginInterface {
     token:string
 }
 
-function login(data:any){
+export interface IloginData{
+    account:string,
+    password:string
+}
+
+export function login(data:IloginData){
     return http.request<loginInterface>({
         url:`login`,
         method:"post",
