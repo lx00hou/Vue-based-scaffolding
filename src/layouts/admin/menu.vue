@@ -1,24 +1,23 @@
 <script lang="ts" setup>
-import {router} from '@/store/router';
-import { RouteRecordNormalized, RouteRecordRaw, useRouter } from 'vue-router';
-const routeService = useRouter();
-const routerStroe = router(); 
-const resetMenu = () => {
-    routerStroe.routes.forEach(route => {
-        route.meta.isClick = false;
-        route.children.forEach(route => {
-            if(route.meta){
-                route.meta.isClick = false
-            }
+import { IMenu } from '#/menu';
+import menuStore from '@/store/menuStore';
+import router from '@/router'
+let menu = menuStore();
+const reset = () => {
+    menu.menus.forEach(menu => {
+        menu.isClick = false;
+        menu.children?.forEach(cmenu => {
+            cmenu.isClick = false
         })
     })
 }
-const handle = (pRoute:RouteRecordNormalized,cRoute?:RouteRecordRaw) => {
-    resetMenu();
-    pRoute.meta.isClick = true;
-    if(cRoute && cRoute.meta){
-        cRoute.meta.isClick = true;
-        routeService.push(cRoute)  // 页面跳转
+
+const handle = (pMenu:IMenu,cMenu?:IMenu) => {
+    reset();
+    pMenu.isClick = true;
+    if(cMenu){
+        cMenu.isClick = true;
+        router.push({name:cMenu.route})
     }
 }
 
@@ -32,22 +31,22 @@ const handle = (pRoute:RouteRecordNormalized,cRoute?:RouteRecordRaw) => {
         </div>
         <!-- 菜单 -->
         <div class="left-container">
-            <dl v-for="(route,index) of routerStroe.routes" :key="index">
-                <dt @click="handle(route)">
+            <dl v-for="(menu,index) of menu.menus" :key="index">
+                <dt @click="handle(menu)">
                     <section>
-                        <i :class="route.meta.icon" />
-                        <span>{{route.meta.title}}</span>
+                        <i :class="menu.icon" />
+                        <span>{{menu.title}}</span>
                     </section>
                     <section>
-                        <i class="fas fa-angle-down  duration-300" :class="{'rotate-180':route.meta.isClick}" />
+                        <i class="fas fa-angle-down  duration-300" :class="{'rotate-180':menu.isClick}" />
                     </section>
                 </dt>
-                <dd v-show="route.meta.isClick" 
-                :class="{active:childRoute.meta?.isClick}" 
-                v-for="(childRoute,index) in route.children"
+                <dd v-show="menu.isClick" 
+                :class="{active:cmenu.isClick}" 
+                v-for="(cmenu,index) in menu.children"
                  :key="index"
-                 @click="handle(route,childRoute)">
-                    {{childRoute.meta?.title}}
+                 @click="handle(menu,cmenu)">
+                    {{cmenu?.title}}
                 </dd>
             </dl>
         </div>
