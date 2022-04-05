@@ -3,6 +3,7 @@ import userStore from '@/store/userStore';
 import { stopCoverage } from "v8";
 import { RouteLocationNormalized, Router } from "vue-router";
 import { CacheEnum } from "@/enum/cacheEnum";
+import menuStore from "@/store/menuStore";
 
 class Guard{
     constructor(private router:Router){}
@@ -15,6 +16,7 @@ class Guard{
         if(this.isLogin(to) === false) return {name:'login'} 
         if(this.isGuest(to) === false) return from
         await this.getUserInfo();
+    
     }   
 
     private getUserInfo(){

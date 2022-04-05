@@ -1,21 +1,19 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-const links = ref<{title:string}[]>([
-    {title:'编辑器'},
-    {title:'订单列表'},
-    {title:'用户管理'},
-    {title:'销售总额'}
-])
+
+import menuStore from "@/store/menuStore";
+const menu =  menuStore()
 
 </script>
 
 <template>
     <div class="m-5 grid grid-flow-col gap-2 justify-start">
-        <a href="" v-for="(link,index) of links" :key="index"
-         class="bg-white rounded-sm hover:bg-violet-500 hover:text-white duration-300 py-2 px-3 text-sm text-gray-600">
-            {{link.title}}
+        <router-link  v-for="(menu,index) of menu.historyMenu" :key="index" :to="{name:menu.route}"
+         class= "border bg-white rounded-sm hover:bg-violet-600 hover:text-white duration-300 py-2 px-3 text-sm "
+         :class="{'bg-violet-600 text-white':$route.name == menu.route}"
+         >
+            {{menu.title}}
             <i class="fas fa-times ml-1" />
-        </a>
+        </router-link>
     </div>
 
 </template>
