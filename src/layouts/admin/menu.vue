@@ -1,38 +1,32 @@
 <script lang="ts" setup>
-import { IMenu } from '#/menu';
-import menuStore from '@/store/menuStore';
-import router from '@/router'
-let menu = menuStore();
-const reset = () => {
-    menu.menus.forEach(menu => {
-        menu.isClick = false;
-        menu.children?.forEach(cmenu => {
-            cmenu.isClick = false
-        })
-    })
-}
+import menuService from '@/composables/menu'
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
-const handle = (pMenu:IMenu,cMenu?:IMenu) => {
-    reset();
-    pMenu.isClick = true;
-    if(cMenu){
-        cMenu.isClick = true;
-        router.push({name:cMenu.route})
-    }
-}
+
+watch(route,() => menuService.setCurrentMenu(route), { immediate:true })
 
 </script>
 <template>
 <!-- 导航 -->
-    <div class="menu w-[200px] bg-gray-900 p-4">
-        <div class="logo text-gray-300 flex items-center">
+    <div class="menu w-[200px] bg-gray-900">
+        <div class="logo text-gray-300 flex items-center p-4">
             <i class="fab fa-500px text-fuchsia-300 mr-2 text-[25px]" />
             <span class="text-md">晚八点开始搬砖</span>
         </div>
         <!-- 菜单 -->
         <div class="left-container">
-            <dl v-for="(menu,index) of menu.menus" :key="index">
-                <dt @click="handle(menu)">
+            <dl>
+                <dt :class="{'bg-violet-500 text-white p-3':$route.name === 'admin.home'}" @click="$router.push('/admin')">
+                    <section>
+                        <i class="fas fa-home" />
+                        <span>主页</span>
+                    </section>
+                </dt>
+            </dl>
+            <dl v-for="(menu,index) of menuService.menus.value" :key="index">
+                <dt @click="menu.isClick = true">
                     <section>
                         <i :class="menu.icon" />
                         <span>{{menu.title}}</span>
@@ -45,7 +39,7 @@ const handle = (pMenu:IMenu,cMenu?:IMenu) => {
                 :class="{active:cmenu.isClick}" 
                 v-for="(cmenu,index) in menu.children"
                  :key="index"
-                 @click="handle(menu,cmenu)">
+                 @click="$router.push( {name:cmenu.route} )">
                     {{cmenu?.title}}
                 </dd>
             </dl>
@@ -57,7 +51,7 @@ const handle = (pMenu:IMenu,cMenu?:IMenu) => {
     dl{
         @apply text-gray-300 text-sm;
         dt{
-            @apply text-sm mt-6 flex justify-between cursor-pointer items-center;
+            @apply text-sm p-4 flex justify-between cursor-pointer items-center;
             section{
                 @apply flex items-center;
                 i {

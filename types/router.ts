@@ -5,6 +5,8 @@ declare module 'vue-router'{
         auth?:boolean,
         guest?:boolean,
         permissions?:string[],     // 权限
-        menu?:IMenu
+        menu?:IMenu,
+        emterClass?:string,
+        leaveClass?:string
     }
 }

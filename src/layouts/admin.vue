@@ -15,17 +15,20 @@ onBeforeRouteUpdate(() => {
 <template>
 <main>
     <!-- w-screen -->
-    <div class="admin min-h-screen min-w-screen  flex">
-        <!-- 左侧目录 -->
+    <div class="admin grid grid-cols-[auto_1fr] min-h-screen min-w-screen">
+        <!-- 左侧导航目录 -->
         <MenuComponent class="hidden md:block"  />
         <!-- 右侧页面 -->
-        <div class="content flex-1 bg-gray-100">
-            <navbarVue />
-            <HistoryLink />
-            <div class="m-5">
-                <router-view #default="{ Component }">
+        <div class="content bg-gray-100 grid grid-rows-[auto_1fr]">
+            <div class>
+                <navbarVue />
+                <HistoryLink />
+            </div>
+
+            <div class="m-3 relative overflow-y-auto">
+                <router-view #default="{ Component  }">
                     <Transition appear enter-active-class="animate_animated" >
-                        <component :is="Component" />
+                        <component :is="Component" class="absolute w-full" />
                     </Transition>
                 </router-view>
             </div>
