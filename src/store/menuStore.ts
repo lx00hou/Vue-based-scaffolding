@@ -15,7 +15,11 @@ export default defineStore('menu', {
     actions:{
         init(){
             this.getMenuByRoute();
-            this.historyMenu = utils.store.get(CacheEnum.HISTORY_MENU)
+            this.historyMenu = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+        },
+        remoeHistoryMenu(menu:IMenu){
+          const menuIndex = this.historyMenu.indexOf(menu);
+          this.historyMenu.splice(menuIndex,1);
         },
         addHistoryMenu(route:RouteLocationNormalized){
           if(!route.meta?.menu) return
