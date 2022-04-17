@@ -15,9 +15,9 @@ onBeforeRouteUpdate(() => {
 <template>
 <main>
     <!-- w-screen -->
-    <div class="admin grid grid-cols-[auto_1fr] min-h-screen min-w-screen">
+    <div class="admin grid md:grid-cols-[auto_1fr] min-h-screen min-w-screen">
         <!-- 左侧导航目录 -->
-        <MenuComponent class="hidden md:block"  />
+        <MenuComponent  />
         <!-- 右侧页面 -->
         <div class="content bg-gray-100 grid grid-rows-[auto_1fr]">
             <div class>

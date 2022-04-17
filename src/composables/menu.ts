@@ -15,6 +15,13 @@ class Menu {
         this.history.value = utils.store.get(CacheEnum.HISTORY_MENU,this.historyMenu) ?? []
     }
 
+    toggleParentMenu(menu:IMenu){
+      this.menus.value.forEach(m => {
+        m.isClick = false;
+        if(m === menu) m.isClick = true 
+      })
+    }
+
     toggleState(){
       this.close.value = !this.close.value
     }
