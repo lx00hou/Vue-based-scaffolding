@@ -2,5 +2,7 @@
 </script>
 
 <template>
-base
+<main>
+    base
+</main>
 </template>

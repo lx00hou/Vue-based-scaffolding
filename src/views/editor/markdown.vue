@@ -2,5 +2,7 @@
 </script>
 
 <template>
+<main>
 markdown    
+</main>
 </template>

@@ -22,7 +22,8 @@ nextTick(() => {
 </script>
 
 <template>
-   <main class="grid md:grid-flow-col gap-3">
+<main>
+   <div class="grid md:grid-flow-col gap-3">
        <el-card shadow="hover" :body-style="{ padding: '20px' }" v-for="(item,index) of cardData" :key="index">
            <template #header>
            <div class="flex justify-between items-center">
@@ -39,7 +40,7 @@ nextTick(() => {
                <span>{{item.total}} </span>
            </section>
        </el-card>
-   </main>
+   </div>
    <div class=" mt-6  grid md:grid-cols-2 gap-3">
        <el-card shadow="always" :body-style="{ padding: '20px' }">
            <template #header>
@@ -55,6 +56,7 @@ nextTick(() => {
        </el-card>
 
    </div>
+</main>
 </template>
 
 <style scoped>

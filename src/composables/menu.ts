@@ -8,11 +8,17 @@ class Menu {
 
     public menus = ref<IMenu[]>([])
     public history = ref<IMenu[]>([])
+    public close  = ref(true)
 
     constructor(){
         this.menus.value = this.getMenuByRoute()
         this.history.value = utils.store.get(CacheEnum.HISTORY_MENU,this.historyMenu) ?? []
     }
+
+    toggleState(){
+      this.close.value = !this.close.value
+    }
+
     setCurrentMenu(route: RouteLocationNormalizedLoaded){
       this.menus.value.forEach(m => {
         m.isClick = false;

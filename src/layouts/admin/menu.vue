@@ -10,8 +10,8 @@ watch(route,() => menuService.setCurrentMenu(route), { immediate:true })
 </script>
 <template>
 <!-- 导航 -->
-    <div class="menu w-[200px] bg-gray-900">
-        <div class="logo text-gray-300 flex items-center p-4">
+    <div class="menu w-[200px] bg-gray-900" :class="{close:menuService.close.value}">
+        <div class="logo">
             <i class="fab fa-500px text-fuchsia-300 mr-2 text-[25px]" />
             <span class="text-md">晚八点开始搬砖</span>
         </div>
@@ -47,26 +47,58 @@ watch(route,() => menuService.setCurrentMenu(route), { immediate:true })
     </div>
 </template>
 <style scoped lang="scss">
-.admin .left-container {
-    dl{
-        @apply text-gray-300 text-sm;
-        dt{
-            @apply text-sm p-4 flex justify-between cursor-pointer items-center;
-            section{
-                @apply flex items-center;
-                i {
-                @apply mr-2 text-lg
+.menu  {
+    .logo {
+        @apply  text-gray-300 flex items-center p-4
+    }
+    .left-container{
+        dl{
+            @apply text-gray-300 text-sm;
+            dt{
+                @apply text-sm p-4 flex justify-between cursor-pointer items-center;
+                section{
+                    @apply flex items-center;
+                    i {
+                    @apply mr-2 text-lg
 
+                    }
+                }
+            }
+            dd{
+                @apply py-3 pl-4 my-2  text-white rounded-md cursor-pointer hover:bg-violet-500 bg-gray-700;
+                &.active{
+                    @apply bg-violet-700  duration-300
                 }
             }
         }
-        dd{
-            @apply py-3 pl-4 my-2  text-white rounded-md cursor-pointer hover:bg-violet-500 bg-gray-700;
-            &.active{
-                @apply bg-violet-700  duration-300
+    }
+    &.close{
+        width: auto;
+        .logo{
+            span{
+                @apply hidden
+            }
+        }
+        .left-container {
+            dl{
+                dt{
+                    @apply flex justify-center;
+                    section{
+                        i {
+                            @apply mr-0
+                        }
+                        span{
+                            @apply hidden
+                        }
+                        &:nth-of-type(2){
+                            @apply hidden
+                        }
+                    }
+                }
             }
         }
     }
 }
+
 
 </style>
