@@ -2,14 +2,20 @@
 import MenuComponent from './admin/menu.vue';
 import navbarVue from './admin/navbar.vue';
 import HistoryLink from './admin/historyLink.vue';
-import menuStore from '@/store/menuStore';
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
+import { watch } from 'vue'
+import menu from '@/composables/menu';
 const route = useRoute();
-const menu = menuStore();
-menu.init();
-onBeforeRouteUpdate(() => {
-    menu.addHistoryMenu(route)
-})
+watch(route,() => {
+menu.addHistoryMenu(route)
+},{immediate:true})
+
+// const menu = menuStore();
+// menu.init();
+// onBeforeRouteUpdate(() => {
+//     menu.addHistoryMenu(route)
+// })
+
 </script>
 
 <template>
