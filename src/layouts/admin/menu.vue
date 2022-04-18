@@ -18,14 +18,6 @@ watch(route,() => menuService.setCurrentMenu(route), { immediate:true })
         </div>
         <!-- 菜单 -->
         <div class="left-container">
-            <dl>
-                <dt :class="{'bg-violet-500 text-white p-3':$route.name === 'admin.home'}" @click="$router.push('/admin')">
-                    <section>
-                        <i class="fas fa-home" />
-                        <span>主页</span>
-                    </section>
-                </dt>
-            </dl>
             <dl v-for="(menu,index) of menuService.menus.value" :key="index">
                 <dt @click="menuService.toggleParentMenu(menu)">
                     <section>

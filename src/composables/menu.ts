@@ -8,7 +8,7 @@ class Menu {
 
     public menus = ref<IMenu[]>([])
     public history = ref<IMenu[]>([])
-    public close  = ref(true)
+    public close  = ref(false)
 
     constructor(){
         this.menus.value = this.getMenuByRoute()

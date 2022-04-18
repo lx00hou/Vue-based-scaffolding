@@ -4,7 +4,9 @@ import utils from '@/utils';
 import menuService from '@/composables/menu'
 
 const userStroe = user();
-
+const fullScreen = () => {
+  document.documentElement.requestFullscreen()
+}
 </script>
 >
 
@@ -20,6 +22,7 @@ const userStroe = user();
     </el-breadcrumb>
   </div>
   <div class="flex justify-center items-center relative group cursor-pointer">
+      <i class="fas fa-down-left-and-up-right-to-center mr-5" @click="fullScreen" />
       <img :src="userStroe.info?.avatar"  class=" w-8 h-8 rounded-full object-cover">
       <span class="ml-2 text-sm text-gray-600">
         {{userStroe.info?.name}}
