@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import user from '@/store/userStore';
 import utils from '@/utils'; 
-import menuService from '@/composables/menu'
-import Notification from '@/composables/notification.vue'
+import menuService from '@/composables/menu';
+import Notification from '@/components/notification.vue';
+import Breadcrumb from '@/components/breadcrumb.vue';
 
 const userStroe = user();
 const fullScreen = () => {
@@ -17,10 +18,7 @@ const fullScreen = () => {
     <div @click="menuService.toggleState">
       <i class="fas fa-left-right mr-2 cursor-pointer"  />
     </div>
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">编辑器</el-breadcrumb-item>
-      <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
-    </el-breadcrumb>
+    <Breadcrumb class="hidden md:block" />
   </div>
   <div class="flex justify-center items-center relative cursor-pointer">
       <Notification class="mr-8" />
