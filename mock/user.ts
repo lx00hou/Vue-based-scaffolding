@@ -13,7 +13,8 @@ export default [
                 result:{
                     name:"苦逼打工人",
                     age:22,
-                    avatar:'/img/iTab-dpm5ll.JPG'
+                    avatar:'/img/iTab-dpm5ll.JPG',
+                    permissions:['markdown_editor','article_edit','base_editor']
                 }
             }
         }

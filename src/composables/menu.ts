@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import router from "@/router";
 import utils from "@/utils";
 import { CacheEnum } from "@/enum/cacheEnum";
-import { RouteLocationNormalizedLoaded } from "vue-router";
+import { RouteLocationNormalizedLoaded, RouteRecordRaw } from "vue-router";
 class Menu {
 
     public menus = ref<IMenu[]>([])
@@ -13,12 +13,22 @@ class Menu {
 
     constructor(){
         this.menus.value = this.getMenuByRoute()
-        this.history.value = utils.store.get(CacheEnum.HISTORY_MENU,this.historyMenu) ?? []
+        this.history.value = this.getHistoryMenu()
+    }
+
+    private getHistoryMenu(){
+      const routes = [] as RouteRecordRaw[] ;
+      router.getRoutes().map(r => routes.push(...r.children));
+      let menus:IMenu[] = utils.store.get(CacheEnum.HISTORY_MENU) ?? [];
+      return menus.filter(m => {
+        return routes.some(r => r.name == m.route)
+      })
     }
 
     remoeHistoryMenu(menu:IMenu){
       const menuIndex = this.history.value.indexOf(menu);
       this.history.value.splice(menuIndex,1);
+      utils.store.set(CacheEnum.HISTORY_MENU,this.history.value)
     }
     addHistoryMenu(route:RouteLocationNormalized){
       if(!route.meta?.menu) return

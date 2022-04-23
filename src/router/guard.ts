@@ -15,8 +15,7 @@ class Guard{
     private async beforeEach(to:RouteLocationNormalized,from:RouteLocationNormalized){
         if(this.isLogin(to) === false) return {name:'login'} 
         if(this.isGuest(to) === false) return from
-        await this.getUserInfo();
-    
+        
     }   
 
     private getUserInfo(){

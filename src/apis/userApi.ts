@@ -3,7 +3,8 @@ import { http } from "@/axios";
 interface User {
     name:string,
     age:number,
-    avatar?:string
+    avatar?:string,
+    permisssions?:string[]
 }
 
 function info(){

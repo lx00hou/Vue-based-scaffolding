@@ -14,8 +14,7 @@ import menuService from '@/composables/menu'
          :class="{'bg-violet-600 text-white':$route.name == item.route}"
          >
             <router-link  :to="{name:item.route}">{{item.title}}</router-link>
-            <!-- @click="menus.remoeHistoryMenu(menu)" -->
-            <i class="fas fa-times ml-1 cursor-pointer hover:text-yellow-500 "  />
+            <i class="fas fa-times ml-1 cursor-pointer hover:text-yellow-500 " @click="menuService.remoeHistoryMenu(item)" />
         </div>
     </div>
 </template>
