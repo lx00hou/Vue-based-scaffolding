@@ -16,8 +16,8 @@ const cardData = ref<Icard[]>([
     {title:"评论数",price:123,iconColor:'text-red-500',icon:'fab fa-angrycreative',total:6768783,totalTitle:"总评论数"}
 ])
 nextTick(() => {
-    echarts.init(document.getElementById('echart1')).setOption(echart1);
-    echarts.init(document.getElementById('echart2')).setOption(echart2);
+    echarts.init(document.getElementById('echart1') as HTMLDivElement).setOption(echart1);
+    echarts.init(document.getElementById('echart2') as HTMLDivElement).setOption(echart1);
 })
 </script>
 

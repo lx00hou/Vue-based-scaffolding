@@ -6,6 +6,7 @@ declare namespace toastui{
         on:(event:string,callback:Function) => void
         removeHook:(type:string) => void
         addHook:(type:string, handler:Function) => void
-
+        setHeight:(height:string) => void
+        focus:() => void
     }
 }
